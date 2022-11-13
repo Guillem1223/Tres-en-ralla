@@ -25,6 +25,25 @@ function main() {
     false,
     false,
   ];
+  const combinacionesGanadoras = [
+    // horizontal row 1
+    [true, true, true, false, false, false, false, false, false],
+    // horizontal row 2
+    [false, false, false, true, true, true, false, false, false],
+    // horizontal row 3
+    [false, false, false, false, false, false, true, true, true],
+    // vertical column 1
+    [true, false, false, true, false, false, true, false, false],
+    // vertical column 2
+    [false, true, false, false, true, false, false, true, false],
+    // vertical column 3
+    [false, false, true, false, false, true, false, false, true],
+    // diagonal 1
+    [true, false, false, false, true, false, false, false, true],
+    // diagonal 2
+    [false, false, true, false, true, false, true, false, false],
+  ];
+
   let turno = "X";
   const fichas = ["O", "X"];
   let fichasPuestas = 0;
@@ -49,6 +68,11 @@ function main() {
         const boton1 = document.getElementsByClassName("a1-button")[0];
         boton1.innerHTML = "X";
         boton1.style.background = "#d0d0d0";
+        // const boton2 = document.getElementsByClassName("a2-button")[1];
+        // boton2.innerHTML = "X";
+        // boton2.style.background = "#d0d0d0";
+        // comprobar victoria
+        arraySeleccionesX == combinacionesGanadoras;
         // 3. cambio de turno
         turno = "O";
 
