@@ -1,7 +1,8 @@
 function main() {
   console.log("test");
+
   let turnoX = 1;
-  const arrayseleccionesX = [
+  const arraySeleccionesX = [
     false,
     false,
     false,
@@ -12,8 +13,8 @@ function main() {
     false,
     false,
   ];
-  let turnoO = 0;
-  const arrayseleccionesO = [
+  let turnoO = 1;
+  const arraySeleccionesO = [
     false,
     false,
     false,
@@ -28,21 +29,35 @@ function main() {
   const fichas = ["O", "X"];
   let fichasPuestas = 0;
   let finPartida = false;
+  console.log("selecciones X", arraySeleccionesX);
   function handleclick() {
     console.log("turno", turno);
+    // comprobar si la casilla ya a sido seleccionada
+    if (arraySeleccionesX[0] == true) {
+      return;
+    }
+    if (arraySeleccionesO[0] == true) {
+      return;
+    }
     switch (turno) {
       // SELECCION X
       case "X":
         // 1.guardar la informacion.
-        // arraySeleccionesX[0]
+        arraySeleccionesX[0] = true;
+        console.log("selecciones X", arraySeleccionesX);
         // 2.colocar la ficha X en UI
-        // a1-button = "X"
-        // 3.cambiar de turno a O
-        // turno = O
+        const boton1 = document.getElementsByClassName("a1-button")[0];
+        boton1.innerHTML = "X";
+        boton1.style.background = "#d0d0d0";
+        // 3. cambio de turno
+        turno = "O";
 
         break;
+
       // SELECCION O
       case "O":
+        console.log("turno", turno);
+        // arraySeleccionesO[]
         break;
     }
     console.log("click");
@@ -63,3 +78,10 @@ main();
 //   if (condition) {
 //   }
 // }
+switch (key) {
+  case value:
+    break;
+
+  default:
+    break;
+}
