@@ -31,7 +31,6 @@ function main() {
   let finPartida = false;
   console.log("selecciones X", arraySeleccionesX);
   function handleclick() {
-    console.log("turno", turno);
     // comprobar si la casilla ya a sido seleccionada
     if (arraySeleccionesX[0] == true) {
       return;
@@ -39,6 +38,7 @@ function main() {
     if (arraySeleccionesO[0] == true) {
       return;
     }
+    console.log("turno", turno);
     switch (turno) {
       // SELECCION X
       case "X":
