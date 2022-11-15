@@ -1,6 +1,7 @@
 function main() {
   console.log("test");
   // Variables
+
   let turnoX = 1;
   const arraySeleccionesX = [
     false,
@@ -71,22 +72,35 @@ function main() {
     botonc2,
     botonc3,
   ];
+  console.log("arrButtibElements", arrButtonElements);
   console.log("selecciones X", arraySeleccionesX);
-  function handleTirada(buttonNumber) {
+  // handle tirada se ejecuta al hacer click en cada uno de los Button
+  function handleTirada(boton, index) {
+    console.log("boton y indice", boton, index);
     // comprobar si la casilla ya a sido seleccionada
-    if (arraySeleccionesX[0] == true) {
+    if (arraySeleccionesX[index] == true) {
       return;
     }
-    if (arraySeleccionesO[0] == true) {
+    if (arraySeleccionesO[index] == true) {
       return;
     }
     console.log("turno", turno);
     switch (turno) {
       // SELECCION X
       case "X":
-        // 1.guardar la informacion.
-        arraySeleccionesX[0] = true;
+        // para comprobar que no hay mas de 3 turnos O
+        if (turnoX > 3) {
+          return;
+        }
+        // sumamos un turno a X
+        turnoX++;
 
+        // 1.guardar la informacion.
+
+        arraySeleccionesX[index] = true;
+        boton.innerHTML = "X";
+
+        boton.style.background = "#d0d0d0";
         console.log("selecciones X", arraySeleccionesX);
         // 2.colocar la ficha X en UI
 
@@ -99,11 +113,19 @@ function main() {
 
       // SELECCION O
       case "O":
-        arraySeleccionesO[0] = true;
-        botona1 = document.getElementsByClassName("a1-button")[0];
-        botona1.innerHTML = "O";
-        botona1.style.background = "#F8C471";
+        // para comprobar que no hay mas de 3 turnos O
+        if (turnoO > 3) {
+          return;
+        }
+        // sumamos un turno a O
+        turnoO++;
+        //
+        arraySeleccionesO[index] = true;
+        boton.innerHTML = "O";
+
+        boton.style.background = "#F8C471";
         console.log("turno", turno);
+        turno = "X";
         // arraySeleccionesO[]
         break;
     }
@@ -112,7 +134,7 @@ function main() {
   arrButtonElements.forEach((boton, index) => {
     function clickCallBack(e) {
       console.log("click", e);
-      handleTirada(boton);
+      handleTirada(boton, index);
     }
     boton.addEventListener("click", clickCallBack);
   });
