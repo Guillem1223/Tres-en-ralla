@@ -72,7 +72,7 @@ function main() {
     botonc3,
   ];
   console.log("selecciones X", arraySeleccionesX);
-  function handleclick() {
+  function handleTirada(buttonNumber) {
     // comprobar si la casilla ya a sido seleccionada
     if (arraySeleccionesX[0] == true) {
       return;
@@ -109,6 +109,13 @@ function main() {
     }
     console.log("click");
   }
+  arrButtonElements.forEach((boton, index) => {
+    function clickCallBack(e) {
+      console.log("click", e);
+      handleTirada(boton);
+    }
+    boton.addEventListener("click", clickCallBack);
+  });
 }
 main();
 // window.addEventListener("load", main);
