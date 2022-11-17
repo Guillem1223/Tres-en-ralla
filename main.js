@@ -48,7 +48,7 @@ function main() {
   let turno = "X";
   const fichas = ["O", "X"];
   let fichasPuestas = 0;
-  let finPartida = false;
+  let esFinPartida = false;
 
   // DOM elements.
 
@@ -84,6 +84,7 @@ function main() {
     if (arraySeleccionesO[index] == true) {
       return;
     }
+
     console.log("turno", turno);
     switch (turno) {
       // SELECCION X
@@ -99,6 +100,13 @@ function main() {
 
         arraySeleccionesX[index] = true;
         boton.innerHTML = "X";
+        // Pruebas
+        if (arraySeleccionesX == combinacionesGanadoras) {
+          esFinPartida = true;
+          arrButtonElements.innerHTML = "Player X WIN!";
+        }
+        console.log("esfinpartida ", esFinPartida);
+        // fin pruebas
 
         boton.style.background = "#d0d0d0";
         console.log("selecciones X", arraySeleccionesX);
@@ -122,6 +130,12 @@ function main() {
         //
         arraySeleccionesO[index] = true;
         boton.innerHTML = "O";
+        // pruebas
+        if (arraySeleccionesO == combinacionesGanadoras) {
+          esFinPartida = true;
+          arrButtonElements.innerHTML = "Player O WIN!";
+        }
+        // fin pruebas
 
         boton.style.background = "#F8C471";
         console.log("turno", turno);
@@ -140,6 +154,7 @@ function main() {
   });
 }
 main();
+
 // window.addEventListener("load", main);
 // do {
 //   fichasPuestas == turno++;
