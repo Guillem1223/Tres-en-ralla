@@ -44,6 +44,31 @@ function main() {
     // diagonal 2
     [false, false, true, false, true, false, true, false, false],
   ];
+  const pruebaSelecciones = [
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+  ];
+
+  // planteamiento comprobar victoria
+  combinacionesGanadoras.forEach((element) => {
+    if (pruebaSelecciones == element) {
+      // esFinPartida = true
+      // arrButtonElements.ge
+    }
+    console.log("el elemento", element);
+    console.log("selecciones jugador O", pruebaSelecciones);
+    console.log(
+      "condicion arraySeleccionesO == element",
+      pruebaSelecciones == element
+    );
+  });
 
   let turno = "X";
   const fichas = ["O", "X"];
