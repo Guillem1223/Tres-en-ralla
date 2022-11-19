@@ -69,20 +69,52 @@ function main() {
     false,
     false,
   ];
+  console.log(
+    "comprobacion ganador",
+    pruebaSelecciones == combinacionesGanadoras[8]
+  );
 
   // planteamiento comprobar victoria
-  combinacionesGanadoras.forEach((element) => {
-    if (pruebaSelecciones == element) {
-      // esFinPartida = true
-      // arrButtonElements.ge
-    }
-    console.log("el elemento", element);
-    console.log("selecciones jugador O", pruebaSelecciones);
-    console.log(
-      "condicion arraySeleccionesO == element",
-      pruebaSelecciones == element
-    );
-  });
+  const esVictoria = (arraySelecciones) => {
+    let gana = false;
+    combinacionesGanadoras.forEach((combinacionArr) => {
+      // devuelve array true/false si es coincidencia
+      const coincidenciasFor = [];
+      // Tambien se podria hacer con for pero solo tendriamos acceso a indice y tendiramos que crear el array coincidenciasFor
+      // for (let index = 0; index < combinacionArr.length; index++) {
+      //   const casilla = combinacionArr[index];
+      //   coincidenciasFor[indice] = false;
+      // }
+      // con .map conseguimos ahorrar lineas de codigo, hacerlo mas entendible y compacto
+      const coincidencias = combinacionArr.map((casilla, indice) => {
+        //   const casilla = combinacionArr[index];
+        // casilla, indice, arraySelecciones
+        if (arraySelecciones[indice] == casilla) {
+          coincidenciasFor[indice] = true;
+
+          return true;
+        } else {
+          coincidenciasFor[indice] = false;
+
+          return false;
+        }
+      });
+
+      console.log("coincidencias for", coincidenciasFor);
+      console.log("coincidencias", coincidencias);
+
+      const coincide = coincidencias.filter((casilla, indice) => {
+        return;
+      });
+      if (coincide.lenght == 9) {
+        gana = true;
+      }
+      // si la array coincide tiene una longitud de 9 gana debe convertirse en true
+      // coincide.lenght == 9? gana = true
+    });
+    return gana;
+  };
+  esVictoria(pruebaSelecciones);
 
   let turno = "X";
   const nombreJugador1 = document.getElementById("nombreJugador1");
@@ -130,8 +162,8 @@ function main() {
     switch (turno) {
       // SELECCION X
       case "X":
-        infoTurno.innerHTML = `${nombreJugador1}`;
-        console.log("nombre del jugador 1" + nombreJugador1);
+        // infoTurno.innerHTML = `${nombreJugador1}`;
+        // console.log("nombre del jugador 1" + nombreJugador1);
         // para comprobar que no hay mas de 3 turnos O
         if (turnoX > 3) {
           return;
@@ -143,13 +175,6 @@ function main() {
 
         arraySeleccionesX[index] = true;
         boton.innerHTML = "X";
-        // Pruebas
-        if (arraySeleccionesX == combinacionesGanadoras) {
-          esFinPartida = true;
-          arrButtonElements.innerHTML = "Player X WIN!";
-        }
-        console.log("esfinpartida ", esFinPartida);
-        // fin pruebas
 
         boton.style.background = "#d0d0d0";
         console.log("selecciones X", arraySeleccionesX);
@@ -159,7 +184,7 @@ function main() {
         // arraySeleccionesX == combinacionesGanadoras;
         // 3. cambio de turno
         turno = "O";
-        infoTurno.innerHTML = `${nombreJugador2}`;
+        // infoTurno.innerHTML = `${nombreJugador2}`;
         break;
 
       // SELECCION O
@@ -197,7 +222,6 @@ function main() {
   });
 }
 main();
-reiniciarPartida = arrButtonElements.innerHTML = "";
 
 // window.addEventListener("load", main);
 // do {
