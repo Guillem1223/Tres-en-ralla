@@ -2,6 +2,10 @@ function main() {
   console.log("test");
   // Variables
 
+  const nombreJugador2 = document.getElementById("nombreJugador2");
+  // const infoTurno = document.getElementById("infoTurno");
+  const reiniciar = document.getElementById("reiniciarPartida");
+
   let turnoX = 1;
   const arraySeleccionesX = [
     false,
@@ -71,6 +75,8 @@ function main() {
   });
 
   let turno = "X";
+  const nombreJugador1 = document.getElementById("nombreJugador1");
+  infoTurno.innerHTML = turno;
   const fichas = ["O", "X"];
   let fichasPuestas = 0;
   let esFinPartida = false;
@@ -97,7 +103,7 @@ function main() {
     botonc2,
     botonc3,
   ];
-  console.log("arrButtibElements", arrButtonElements);
+  console.log("arrButtElements", arrButtonElements);
   console.log("selecciones X", arraySeleccionesX);
   // handle tirada se ejecuta al hacer click en cada uno de los Button
   function handleTirada(boton, index) {
@@ -114,6 +120,8 @@ function main() {
     switch (turno) {
       // SELECCION X
       case "X":
+        infoTurno.innerHTML = `${nombreJugador1}`;
+        console.log("nombre del jugador 1" + nombreJugador1);
         // para comprobar que no hay mas de 3 turnos O
         if (turnoX > 3) {
           return;
@@ -141,7 +149,7 @@ function main() {
         // arraySeleccionesX == combinacionesGanadoras;
         // 3. cambio de turno
         turno = "O";
-
+        infoTurno.innerHTML = `${nombreJugador2}`;
         break;
 
       // SELECCION O
@@ -179,6 +187,7 @@ function main() {
   });
 }
 main();
+reiniciarPartida = arrButtonElements.innerHTML = "";
 
 // window.addEventListener("load", main);
 // do {

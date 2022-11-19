@@ -13,6 +13,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+#mainContainer {
+  display: flex;
+  flex-direction: row;
+}
 .tablero {
   width: 500px;
   height: 500px;

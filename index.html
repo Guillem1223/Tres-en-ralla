@@ -8,17 +8,34 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <div class="mesa">
-      <div class="tablero">
-        <button class="a1-button" id=""></button>
-        <button class="a2-button" id=""></button>
-        <button class="a3-button" id=""></button>
-        <button class="b1-button" id=""></button>
-        <button class="b2-button" id=""></button>
-        <button class="b3-button" id=""></button>
-        <button class="c1-button" id=""></button>
-        <button class="c2-button" id=""></button>
-        <button class="c3-button" id=""></button>
+    <div id="mainContainer">
+      <div id="interfaz1">
+        <button id="reiniciarPartida">Reiniciar</button>
+        <p>Turno de: <span id="infoTurno"></span></p>
+
+        <form id="formJugador1">
+          <p id="jugador1">Jugador1</p>
+          <input type="text" id="nombreJugador1" />
+        </form>
+
+        <form id="formJugador2">
+          <p id="jugador2">Jugador2</p>
+          <input type="text" id="nombreJugador2" />
+        </form>
+      </div>
+
+      <div class="mesa">
+        <div class="tablero">
+          <button class="a1-button" id=""></button>
+          <button class="a2-button" id=""></button>
+          <button class="a3-button" id=""></button>
+          <button class="b1-button" id=""></button>
+          <button class="b2-button" id=""></button>
+          <button class="b3-button" id=""></button>
+          <button class="c1-button" id=""></button>
+          <button class="c2-button" id=""></button>
+          <button class="c3-button" id=""></button>
+        </div>
       </div>
     </div>
     <script src="main.js"></script>
