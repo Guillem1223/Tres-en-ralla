@@ -1,8 +1,18 @@
 function main() {
   console.log("test");
   // Variables
+  const infoTurno = document.getElementById("infoTurno");
+  let nombreJugador2 = "jugador 2";
+  const nombreJugador2ElInput = document.getElementById("nombreJugador2");
+  // asignar nombre por defecto
+  nombreJugador2ElInput.value = nombreJugador2;
 
-  const nombreJugador2 = document.getElementById("nombreJugador2");
+  nombreJugador2ElInput.addEventListener("blur", (e) => {
+    nombreJugador2 = nombreJugador2ElInput.value;
+    infoTurno.value = nombreJugador2;
+    console.log("blur", e);
+  });
+
   // const infoTurno = document.getElementById("infoTurno");
   const reiniciar = document.getElementById("reiniciarPartida");
 
