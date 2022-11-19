@@ -60,7 +60,7 @@ function main() {
   ];
   const pruebaSelecciones = [
     false,
-    false,
+    true,
     true,
     false,
     true,
@@ -79,39 +79,52 @@ function main() {
     let gana = false;
     combinacionesGanadoras.forEach((combinacionArr) => {
       // devuelve array true/false si es coincidencia
+
+      // coincidenciasFor es solo para testing y aprendizaje
       const coincidenciasFor = [];
       // Tambien se podria hacer con for pero solo tendriamos acceso a indice y tendiramos que crear el array coincidenciasFor
       // for (let index = 0; index < combinacionArr.length; index++) {
       //   const casilla = combinacionArr[index];
       //   coincidenciasFor[indice] = false;
       // }
+
       // con .map conseguimos ahorrar lineas de codigo, hacerlo mas entendible y compacto
+
+      // .map nos construye una array nueva, que es el resultado de la comparacion del foreach, ademas mirara el valor de cada casilla indice por indice
       const coincidencias = combinacionArr.map((casilla, indice) => {
-        //   const casilla = combinacionArr[index];
-        // casilla, indice, arraySelecciones
-        if (arraySelecciones[indice] == casilla) {
-          coincidenciasFor[indice] = true;
+        if (casilla == true) {
+          //   const casilla = combinacionArr[index];
+          // casilla, indice, arraySelecciones
+          if (arraySelecciones[indice] == casilla) {
+            coincidenciasFor[indice] = true;
 
-          return true;
+            return true;
+          } else {
+            coincidenciasFor[indice] = false;
+
+            return false;
+          }
         } else {
-          coincidenciasFor[indice] = false;
-
-          return false;
+          coincidenciasFor[indice] = true;
+          return true;
         }
       });
 
       console.log("coincidencias for", coincidenciasFor);
       console.log("coincidencias", coincidencias);
-
+      // .filter ira casilla por casilla y si el return devuelve true lo mañadira a una array nueva y sino lo ignorara.
       const coincide = coincidencias.filter((casilla, indice) => {
-        return;
+        return casilla;
       });
+      console.log("coincide", coincide);
+      console.log("coincide.lenght", coincide.lenght);
       if (coincide.lenght == 9) {
         gana = true;
       }
       // si la array coincide tiene una longitud de 9 gana debe convertirse en true
       // coincide.lenght == 9? gana = true
     });
+    console.log("gana", gana);
     return gana;
   };
   esVictoria(pruebaSelecciones);
