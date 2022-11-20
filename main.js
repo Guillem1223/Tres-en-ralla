@@ -2,6 +2,7 @@ function main() {
   console.log("test");
 
   // pendiente de refactorizar
+  // gestion del nombre de los jugadores 1 y 2 para la interfaz
   const infoTurno = document.getElementById("infoTurno");
   let nombreJugador2 = "O";
   const nombreJugador2ElInput = document.getElementById("nombreJugador2");
@@ -84,18 +85,6 @@ function main() {
     false,
   ];
 
-  const pruebaSelecciones = [
-    false,
-    true,
-    false,
-    false,
-    true,
-    false,
-    true,
-    false,
-    false,
-  ];
-
   // comprobar victoria
 
   const esVictoria = (arraySelecciones) => {
@@ -123,6 +112,7 @@ function main() {
 
       // coincidenciasFor es solo para testing y aprendizaje
       // const coincidenciasFor = [];
+
       // Tambien se podria hacer con for pero solo tendriamos acceso a indice y tendiramos que crear el array coincidenciasFor
       // for (let index = 0; index < combinacionArr.length; index++) {
       //   const casilla = combinacionArr[index];
