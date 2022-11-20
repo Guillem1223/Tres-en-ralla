@@ -37,10 +37,31 @@ function main() {
   // const infoTurno = document.getElementById("infoTurno");
   const reiniciar = document.getElementById("reiniciarPartida");
   reiniciar.addEventListener("click", (e) => {
+    e.preventDefault();
+    arrButtonElements.forEach((boton, indice) => {
+      boton.innerHTML = "";
+      boton.style.background = "white";
+    });
+    arraySeleccionesX.forEach((casilla, indice) => {
+      arraySeleccionesX[indice] = false;
+    });
+    arraySeleccionesO.forEach((casilla, indice) => {
+      arraySeleccionesO[indice] = false;
+    });
+    esFinPartida = false;
+    turno = "X";
+    turnoX = 1;
+    turnoO = 1;
+    esReintento = false;
+    modificarInfoTurno(turno);
+    victoriaElement.innerText = "";
+
     /**
      * 1. Modificar UI
-     * a. Reiniciar Variables que bloquean handleTirada
-     * b. Reiniciar arrays seleccionX y seleccionO
+     * 2. Reiniciar Variables que bloquean handleTirada
+     * 3. Reiniciar arrays seleccionX y seleccionO
+     * 4.turno cambiar a X y cambiar a O
+     * 5. Cambiar turno X y turno
      */
     /** implementar un foreach con el array de buttons, 
      * modificar el inner html mirar arraySeleccionesO[index] = true;
@@ -179,10 +200,11 @@ function main() {
 
   infoTurno.innerHTML = turno;
   const fichas = ["O", "X"];
-  let fichasPuestas = 0;
+
   let esFinPartida = false;
 
   // DOM elements.
+  const victoriaElement = document.getElementById("victoria");
 
   const botona1 = document.getElementsByClassName("a1-button")[0];
   const botona2 = document.getElementsByClassName("a2-button")[0];
@@ -213,6 +235,7 @@ function main() {
   function handleTirada(boton, index) {
     esReintento = true;
     console.log(`es final de partida, ${esFinPartida}`);
+    console.log("arraySeleccionesX", arraySeleccionesX);
     if (esFinPartida) {
       return;
     }
@@ -229,8 +252,6 @@ function main() {
     switch (turno) {
       // SELECCION X
       case "X":
-        // infoTurno.innerHTML = `${nombreJugador1}`;
-        // console.log("nombre del jugador 1" + nombreJugador1);
         // para comprobar que no hay mas de 3 turnos O
         if (turnoX > 3) {
           return;
@@ -250,9 +271,12 @@ function main() {
         // comprobar victoria
         esFinPartida = esVictoria(arraySeleccionesX);
         if (esFinPartida) {
-          //  mostrarUiVictoria()
+          //  mostrarUiVictoria
+
+          victoriaElement.innerText = `Gana ${nombreJugador1}`;
           break;
-        } else {
+        } else if (turnoX > 3 && turnoO > 3) {
+          esReintento = true;
         }
         // 3. cambio de turno
         turno = "O";
@@ -273,7 +297,19 @@ function main() {
 
         boton.style.background = "#F8C471";
         console.log("turno", turno);
+
+        // comprobar victoria
+        esFinPartida = esVictoria(arraySeleccionesO);
+        if (esFinPartida) {
+          //  mostrarUiVictoria
+
+          victoriaElement.innerText = `Gana ${nombreJugador2}`;
+          break;
+        } else {
+        }
+
         turno = "X";
+
         // arraySeleccionesO[]
         break;
     }
@@ -288,6 +324,7 @@ function main() {
       console.log("click", e);
       if (esReintento) {
         handleReintento(boton, indice);
+        // return
       }
 
       handleTirada(boton, indice);
