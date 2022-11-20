@@ -1,21 +1,67 @@
 function main() {
   console.log("test");
-  // Variables
+
+  // pendiente de refactorizar
   const infoTurno = document.getElementById("infoTurno");
-  let nombreJugador2 = "jugador 2";
+  let nombreJugador2 = "O";
   const nombreJugador2ElInput = document.getElementById("nombreJugador2");
   // asignar nombre por defecto
   nombreJugador2ElInput.value = nombreJugador2;
 
   nombreJugador2ElInput.addEventListener("blur", (e) => {
     nombreJugador2 = nombreJugador2ElInput.value;
-    infoTurno.value = nombreJugador2;
+    modificarInfoTurno(turno);
     console.log("blur", e);
   });
 
+  let nombreJugador1 = "X";
+  const nombreJugador1ElInput = document.getElementById("nombreJugador1");
+  // asignar nombre por defecto
+  nombreJugador1ElInput.value = nombreJugador1;
+
+  nombreJugador1ElInput.addEventListener("blur", (e) => {
+    nombreJugador1 = nombreJugador1ElInput.value;
+    modificarInfoTurno(turno);
+    console.log("blur", e);
+  });
+
+  function modificarInfoTurno(turnoActual) {
+    if (turnoActual == "X") {
+      infoTurno.innerText = nombreJugador1;
+    } else if (turnoActual == "O") {
+      infoTurno.innerText = nombreJugador2;
+    }
+  }
+  // fin pendiente de refactorizar
+
   // const infoTurno = document.getElementById("infoTurno");
   const reiniciar = document.getElementById("reiniciarPartida");
+  reiniciar.addEventListener("click", (e) => {
+    /**
+     * 1. Modificar UI
+     * a. Reiniciar Variables que bloquean handleTirada
+     * b. Reiniciar arrays seleccionX y seleccionO
+     */
+    /** implementar un foreach con el array de buttons, 
+     * modificar el inner html mirar arraySeleccionesO[index] = true;
+        boton.innerHTML = "O";
 
+        arrButtonElements.forEach((boton, indice) => {
+    function clickCallBack(e) {
+      console.log("click", e);
+      if (esReintento) {
+        handleReintento(boton, indice);
+      }
+
+      handleTirada(boton, indice);
+    }
+    boton.addEventListener("click", clickCallBack);
+  });
+}
+     * 
+     *  */
+  });
+  // Variables
   let esReintento = false;
 
   let turnoX = 1;
@@ -130,7 +176,7 @@ function main() {
   // esVictoria(pruebaSelecciones);
 
   let turno = "X";
-  const nombreJugador1 = document.getElementById("nombreJugador1");
+
   infoTurno.innerHTML = turno;
   const fichas = ["O", "X"];
   let fichasPuestas = 0;
@@ -231,7 +277,8 @@ function main() {
         // arraySeleccionesO[]
         break;
     }
-    console.log("click");
+    modificarInfoTurno(turno);
+    console.log("click despues de switch");
   }
 
   // Usamos el forEach para repetir el evento en todos los botones sin tener que repetir la linea de codigo para cada uno de ellos.
