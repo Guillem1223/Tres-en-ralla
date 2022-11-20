@@ -8,24 +8,28 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
+    <!-- vontenedor principal -->
     <div id="mainContainer">
       <div id="interfaz1">
+        <!-- boton de reinicio del tablero -->
         <button id="reiniciarPartida">Reiniciar</button>
+        <!-- panel informativo, para quien es el turno y quien ha ganado la partida -->
         <p>Turno de: <span id="infoTurno"></span></p>
         <p id="victoria"></p>
-
+        <!-- input para el nombre del jugador 1 -->
         <div>
           <label for="nombreJugador1">Jugador1</label>
           <input type="text" id="nombreJugador1" />
         </div>
-
+        <!-- input para el nombre del jugador 2 -->
         <div>
           <label for="nombreJugador2">Jugador2</label>
           <input type="text" id="nombreJugador2" />
         </div>
       </div>
-
+      <!-- div que gestiona la posicion del tablero -->
       <div class="mesa">
+        <!-- tablero de juego y todas sus casillas -->
         <div class="tablero">
           <button class="a1-button button" id=""></button>
           <button class="a2-button button" id=""></button>

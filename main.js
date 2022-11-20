@@ -34,7 +34,7 @@ function main() {
   }
   // fin pendiente de refactorizar
 
-  // const infoTurno = document.getElementById("infoTurno");
+  // Reiniciar y limpiar el tablero para volver a jugar
   const reiniciar = document.getElementById("reiniciarPartida");
   reiniciar.addEventListener("click", (e) => {
     e.preventDefault();
@@ -55,32 +55,6 @@ function main() {
     esReintento = false;
     modificarInfoTurno(turno);
     victoriaElement.innerText = "";
-
-    /**
-     * 1. Modificar UI
-     * 2. Reiniciar Variables que bloquean handleTirada
-     * 3. Reiniciar arrays seleccionX y seleccionO
-     * 4.turno cambiar a X y cambiar a O
-     * 5. Cambiar turno X y turno
-     */
-    /** implementar un foreach con el array de buttons, 
-     * modificar el inner html mirar arraySeleccionesO[index] = true;
-        boton.innerHTML = "O";
-
-        arrButtonElements.forEach((boton, indice) => {
-    function clickCallBack(e) {
-      console.log("click", e);
-      if (esReintento) {
-        handleReintento(boton, indice);
-      }
-
-      handleTirada(boton, indice);
-    }
-    boton.addEventListener("click", clickCallBack);
-  });
-}
-     * 
-     *  */
   });
   // Variables
   let esReintento = false;
@@ -122,7 +96,7 @@ function main() {
     false,
   ];
 
-  // planteamiento comprobar victoria
+  // comprobar victoria
 
   const esVictoria = (arraySelecciones) => {
     let gana = false;
@@ -179,7 +153,7 @@ function main() {
 
       // console.log("coincidencias for", coincidenciasFor);
       console.log("coincidencias", coincidencias);
-      // .filter va casilla por casilla y si el return devuelve true lo mañadira a una array nueva y sino lo ignorara.
+      // .filter va casilla por casilla y si el return devuelve true lo añadira a una array nueva y sino lo ignorara.
       const coincide = coincidencias.filter((casilla, indice) => {
         return casilla;
       });
@@ -188,7 +162,7 @@ function main() {
       if (coincide.length == 9) {
         gana = true;
       }
-      // si la array coincide tiene una longitud de 9 gana debe convertirse en true
+      // si la array coincide tiene una longitud de 9, gana debe convertirse en true
       // coincide.length == 9? gana = true
     });
     console.log("gana", gana);
@@ -252,35 +226,34 @@ function main() {
     switch (turno) {
       // SELECCION X
       case "X":
-        // para comprobar que no hay mas de 3 turnos O
+        // para comprobar que no hay mas de 3 turnos X
         if (turnoX > 3) {
           return;
         }
         // sumamos un turno a X
         turnoX++;
 
-        // 1.guardar la informacion.
-
+        // guardar la informacion.
+        // colocar la ficha X en UI
         arraySeleccionesX[index] = true;
         boton.innerHTML = "X";
 
         boton.style.background = "#d0d0d0";
         console.log("selecciones X", arraySeleccionesX);
-        // 2.colocar la ficha X en UI
 
         // comprobar victoria
         esFinPartida = esVictoria(arraySeleccionesX);
         if (esFinPartida) {
-          //  mostrarUiVictoria
+          //  mostrar victoria en UI
 
           victoriaElement.innerText = `Gana ${nombreJugador1}`;
           break;
         } else if (turnoX > 3 && turnoO > 3) {
           esReintento = true;
         }
-        // 3. cambio de turno
+        // cambio de turno
         turno = "O";
-        // infoTurno.innerHTML = `${nombreJugador2}`;
+
         break;
 
       // SELECCION O
@@ -291,7 +264,7 @@ function main() {
         }
         // sumamos un turno a O
         turnoO++;
-        //
+        // Colocar la ficha O en UI
         arraySeleccionesO[index] = true;
         boton.innerHTML = "O";
 
@@ -310,7 +283,6 @@ function main() {
 
         turno = "X";
 
-        // arraySeleccionesO[]
         break;
     }
     modificarInfoTurno(turno);
