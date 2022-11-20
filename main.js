@@ -16,7 +16,7 @@ function main() {
   // const infoTurno = document.getElementById("infoTurno");
   const reiniciar = document.getElementById("reiniciarPartida");
 
-  let reintento = false;
+  let esReintento = false;
 
   let turnoX = 1;
   const arraySeleccionesX = [
@@ -158,9 +158,14 @@ function main() {
     botonc2,
     botonc3,
   ];
+  function handleReintento(boton, indice) {
+    console.log("handleReintento");
+  }
 
   // handle tirada se ejecuta al hacer click en cada uno de los Button
+
   function handleTirada(boton, index) {
+    esReintento = true;
     console.log(`es final de partida, ${esFinPartida}`);
     if (esFinPartida) {
       return;
@@ -231,10 +236,14 @@ function main() {
 
   // Usamos el forEach para repetir el evento en todos los botones sin tener que repetir la linea de codigo para cada uno de ellos.
 
-  arrButtonElements.forEach((boton, index) => {
+  arrButtonElements.forEach((boton, indice) => {
     function clickCallBack(e) {
       console.log("click", e);
-      handleTirada(boton, index);
+      if (esReintento) {
+        handleReintento(boton, indice);
+      }
+
+      handleTirada(boton, indice);
     }
     boton.addEventListener("click", clickCallBack);
   });
