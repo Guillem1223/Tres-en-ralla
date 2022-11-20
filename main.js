@@ -16,6 +16,8 @@ function main() {
   // const infoTurno = document.getElementById("infoTurno");
   const reiniciar = document.getElementById("reiniciarPartida");
 
+  let reintento = false;
+
   let turnoX = 1;
   const arraySeleccionesX = [
     false,
@@ -40,28 +42,11 @@ function main() {
     false,
     false,
   ];
-  const combinacionesGanadoras = [
-    // horizontal row 1
-    [true, true, true, false, false, false, false, false, false],
-    // horizontal row 2
-    [false, false, false, true, true, true, false, false, false],
-    // horizontal row 3
-    [false, false, false, false, false, false, true, true, true],
-    // vertical column 1
-    [true, false, false, true, false, false, true, false, false],
-    // vertical column 2
-    [false, true, false, false, true, false, false, true, false],
-    // vertical column 3
-    [false, false, true, false, false, true, false, false, true],
-    // diagonal 1
-    [true, false, false, false, true, false, false, false, true],
-    // diagonal 2
-    [false, false, true, false, true, false, true, false, false],
-  ];
+
   const pruebaSelecciones = [
     false,
     true,
-    true,
+    false,
     false,
     true,
     false,
@@ -69,19 +54,34 @@ function main() {
     false,
     false,
   ];
-  console.log(
-    "comprobacion ganador",
-    pruebaSelecciones == combinacionesGanadoras[8]
-  );
 
   // planteamiento comprobar victoria
+
   const esVictoria = (arraySelecciones) => {
     let gana = false;
+    const combinacionesGanadoras = [
+      // horizontal row 1
+      [true, true, true, false, false, false, false, false, false],
+      // horizontal row 2
+      [false, false, false, true, true, true, false, false, false],
+      // horizontal row 3
+      [false, false, false, false, false, false, true, true, true],
+      // vertical column 1
+      [true, false, false, true, false, false, true, false, false],
+      // vertical column 2
+      [false, true, false, false, true, false, false, true, false],
+      // vertical column 3
+      [false, false, true, false, false, true, false, false, true],
+      // diagonal 1
+      [true, false, false, false, true, false, false, false, true],
+      // diagonal 2
+      [false, false, true, false, true, false, true, false, false],
+    ];
     combinacionesGanadoras.forEach((combinacionArr) => {
       // devuelve array true/false si es coincidencia
 
       // coincidenciasFor es solo para testing y aprendizaje
-      const coincidenciasFor = [];
+      // const coincidenciasFor = [];
       // Tambien se podria hacer con for pero solo tendriamos acceso a indice y tendiramos que crear el array coincidenciasFor
       // for (let index = 0; index < combinacionArr.length; index++) {
       //   const casilla = combinacionArr[index];
@@ -96,38 +96,38 @@ function main() {
           //   const casilla = combinacionArr[index];
           // casilla, indice, arraySelecciones
           if (arraySelecciones[indice] == casilla) {
-            coincidenciasFor[indice] = true;
+            // coincidenciasFor[indice] = true;
 
             return true;
           } else {
-            coincidenciasFor[indice] = false;
+            // coincidenciasFor[indice] = false;
 
             return false;
           }
         } else {
-          coincidenciasFor[indice] = true;
+          // coincidenciasFor[indice] = true;
           return true;
         }
       });
 
-      console.log("coincidencias for", coincidenciasFor);
+      // console.log("coincidencias for", coincidenciasFor);
       console.log("coincidencias", coincidencias);
-      // .filter ira casilla por casilla y si el return devuelve true lo mañadira a una array nueva y sino lo ignorara.
+      // .filter va casilla por casilla y si el return devuelve true lo mañadira a una array nueva y sino lo ignorara.
       const coincide = coincidencias.filter((casilla, indice) => {
         return casilla;
       });
       console.log("coincide", coincide);
-      console.log("coincide.lenght", coincide.lenght);
-      if (coincide.lenght == 9) {
+      console.log("coincide.length", coincide.length);
+      if (coincide.length == 9) {
         gana = true;
       }
       // si la array coincide tiene una longitud de 9 gana debe convertirse en true
-      // coincide.lenght == 9? gana = true
+      // coincide.length == 9? gana = true
     });
     console.log("gana", gana);
     return gana;
   };
-  esVictoria(pruebaSelecciones);
+  // esVictoria(pruebaSelecciones);
 
   let turno = "X";
   const nombreJugador1 = document.getElementById("nombreJugador1");
@@ -158,11 +158,14 @@ function main() {
     botonc2,
     botonc3,
   ];
-  console.log("arrButtElements", arrButtonElements);
-  console.log("selecciones X", arraySeleccionesX);
+
   // handle tirada se ejecuta al hacer click en cada uno de los Button
   function handleTirada(boton, index) {
-    console.log("boton y indice", boton, index);
+    console.log(`es final de partida, ${esFinPartida}`);
+    if (esFinPartida) {
+      return;
+    }
+
     // comprobar si la casilla ya a sido seleccionada
     if (arraySeleccionesX[index] == true) {
       return;
@@ -194,7 +197,12 @@ function main() {
         // 2.colocar la ficha X en UI
 
         // comprobar victoria
-        // arraySeleccionesX == combinacionesGanadoras;
+        esFinPartida = esVictoria(arraySeleccionesX);
+        if (esFinPartida) {
+          //  mostrarUiVictoria()
+          break;
+        } else {
+        }
         // 3. cambio de turno
         turno = "O";
         // infoTurno.innerHTML = `${nombreJugador2}`;
@@ -211,12 +219,6 @@ function main() {
         //
         arraySeleccionesO[index] = true;
         boton.innerHTML = "O";
-        // pruebas
-        if (arraySeleccionesO == combinacionesGanadoras) {
-          esFinPartida = true;
-          arrButtonElements.innerHTML = "Player O WIN!";
-        }
-        // fin pruebas
 
         boton.style.background = "#F8C471";
         console.log("turno", turno);
@@ -226,6 +228,9 @@ function main() {
     }
     console.log("click");
   }
+
+  // Usamos el forEach para repetir el evento en todos los botones sin tener que repetir la linea de codigo para cada uno de ellos.
+
   arrButtonElements.forEach((boton, index) => {
     function clickCallBack(e) {
       console.log("click", e);
@@ -235,14 +240,3 @@ function main() {
   });
 }
 main();
-
-// window.addEventListener("load", main);
-// do {
-//   fichasPuestas == turno++;
-// } while (fichasPuestas < 6);
-
-// function ponerFicha(turno) {
-//   let botonPulsado = turno;
-//   if (condition) {
-//   }
-// }
