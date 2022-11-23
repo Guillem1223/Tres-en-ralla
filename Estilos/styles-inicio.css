@@ -1,0 +1,59 @@
+.header {
+  grid-area: header;
+  background-color: #f44747;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-family: "Press Start 2P", cursive;
+}
+.left {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(241, 130, 33);
+  background: linear-gradient(
+    0deg,
+    rgba(241, 130, 33, 1) 51%,
+    rgba(244, 71, 71, 1) 80%
+  );
+  font-family: "Press Start 2P", cursive;
+  text-justify: distribute-all-lines;
+}
+.right {
+  grid-area: sidebar;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(241, 130, 33);
+  background: linear-gradient(
+    0deg,
+    rgba(241, 130, 33, 1) 51%,
+    rgba(244, 71, 71, 1) 80%
+  );
+}
+#iniciarPartida {
+  font-size: 25px;
+  font-family: "Press Start 2P", cursive;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: footer;
+  background-color: #f18221;
+  font-family: "Press Start 2P", cursive;
+}
+#main {
+  display: grid;
+
+  grid-template-areas:
+    "header header header header"
+    "main main main sidebar"
+    "footer footer footer footer";
+
+  background: grey;
+  height: 700px;
+  width: cover;
+}
