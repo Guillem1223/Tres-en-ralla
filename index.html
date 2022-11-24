@@ -4,45 +4,57 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/Estilos/styles.css" />
-    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="/Estilos/styles-inicio.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cherry+Swash:wght@700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
   </head>
   <body>
-    <!-- vontenedor principal -->
-    <div id="mainContainer">
-      <div id="interfaz1">
-        <!-- boton de reinicio del tablero -->
-        <button id="reiniciarPartida">Reiniciar</button>
-        <!-- panel informativo, para quien es el turno y quien ha ganado la partida -->
-        <p>Turno de: <span id="infoTurno"></span></p>
-        <p id="victoria"></p>
-        <!-- input para el nombre del jugador 1 -->
-        <div>
-          <label for="nombreJugador1">Jugador1</label>
-          <input type="text" id="nombreJugador1" />
-        </div>
-        <!-- input para el nombre del jugador 2 -->
-        <div>
-          <label for="nombreJugador2">Jugador2</label>
-          <input type="text" id="nombreJugador2" />
-        </div>
-      </div>
-      <!-- div que gestiona la posicion del tablero -->
-      <div class="mesa">
-        <!-- tablero de juego y todas sus casillas -->
-        <div class="tablero">
-          <button class="a1-button button" id=""></button>
-          <button class="a2-button button" id=""></button>
-          <button class="a3-button button" id=""></button>
-          <button class="b1-button button" id=""></button>
-          <button class="b2-button button" id=""></button>
-          <button class="b3-button button" id=""></button>
-          <button class="c1-button button" id=""></button>
-          <button class="c2-button button" id=""></button>
-          <button class="c3-button button" id=""></button>
-        </div>
-      </div>
+    <div id="main">
+      <header class="header">
+        <h1>TIC TAC TOE</h1>
+      </header>
+      <main class="left">
+        <h4>
+          Reglas del Juego
+          <ol>
+            <li>Pulsa el Boton Iniciar</li>
+            <br />
+            <li>Escoge si quiere jugar vs un ammigo o vs cpu.</li>
+            <br />
+            <li>Introduce el nombre de tu oponente y el tuyo.</li>
+            <br />
+            <li>
+              Deja que la interfaz diga de quien es el turno, no tiene perdida
+              ;).
+            </li>
+            <br />
+            <li>
+              Consigue poner tres fichas consecutivas antes que tu oponente.
+            </li>
+            <br />
+            <li>
+              No olvides bloquear a tu oponente e impedirle que consiga su
+              objetivo.
+            </li>
+            <br />
+            <li>La interfaz avisara de quien es el ganador.</li>
+            <br />
+            <li>Para empezar una nueva partida pulsa el boton Reiniciar.</li>
+            <br />
+            <li>Enjoy!</li>
+            <br />
+          </ol>
+        </h4>
+      </main>
+      <section class="right">
+        <a href="index.html" target="_parent">
+          <button id="iniciarPartida">Iniciar</button></a
+        >
+      </section>
+      <footer class="footer"><span>Powered by WILL</span></footer>
     </div>
-    <script src="main.js"></script>
   </body>
 </html>
