@@ -66,3 +66,25 @@ body {
 .c3-button {
   grid-area: c3;
 }
+#divVictoria {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: rgb(241, 130, 33);
+  background: linear-gradient(
+    0deg,
+    rgba(241, 130, 33, 1) 51%,
+    rgba(244, 71, 71, 1) 80%
+  );
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  font-family: "Press Start 2P", cursive;
+}
+#ganadorPantallaFinal {
+  margin-top: 30px;
+}

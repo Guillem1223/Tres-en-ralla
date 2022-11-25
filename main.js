@@ -56,6 +56,7 @@ function main() {
     esReintento = false;
     modificarInfoTurno(turno);
     victoriaElement.innerText = "";
+    document.getElementById("divVictoria").style.display = "none";
   });
   // Variables
   let esReintento = false;
@@ -237,6 +238,11 @@ function main() {
           //  mostrar victoria en UI
 
           victoriaElement.innerText = `Gana ${nombreJugador1}`;
+          document.getElementById("divVictoria").style.display = "flex";
+          document.getElementById(
+            "ganadorPantallaFinal"
+          ).innerText = `${nombreJugador1}`;
+
           break;
         } else if (turnoX > 3 && turnoO > 3) {
           esReintento = true;
@@ -267,6 +273,10 @@ function main() {
           //  mostrarUiVictoria
 
           victoriaElement.innerText = `Gana ${nombreJugador2}`;
+          document.getElementById("divVictoria").style.display = "flex";
+          document.getElementById(
+            "ganadorPantallaFinal"
+          ).innerText = `${nombreJugador2}`;
           break;
         } else {
         }
